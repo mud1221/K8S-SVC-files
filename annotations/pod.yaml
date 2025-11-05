@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: anno-pod
+  labels:
+    app: demo-app
+  annotations:
+    myecr: "003364515214.dkr.ecr.ap-south-1.amazonaws.com/javadevapp"
+    sesrvice.beta.kubernetes.io/aws-load.balancer-schema: internet-facing
+spec:
+  containers:
+    - name: my-cont
+      image: nginx:1.29
+      ports:
+        - containerPort: 80
