@@ -7,7 +7,7 @@ metadata:
     app: java
 spec: 
   minReadySeconds: 5
-  replicas: 5
+  replicas: 4
   selector: 
     matchLabels:
       app: javapods
@@ -19,19 +19,25 @@ spec:
   template: 
     metadata:  
       labels:
-        app: java
+        app: javapods
     spec:
       containers:
-        - name: my-container
+        - name: myjava-container
           image: 003364515214.dkr.ecr.ap-south-1.amazonaws.com/gaming/k8s:1.1
           ports:
             - containerPort: 8080
-          resources:
-            requests:
-              memory: 100Mi
-              cpu: 90m
-            limits:
-              memory: 256Mi
-              cpu: 150m
-          restartPolicy: Always      
+          livenessProbe:
+            tcpsocket:
+              port: 80
+      resources:
+        requests: 
+          cpu: 125m
+          memory: 64Mi
+        limits:
+          cpu: 250m
+          memory: 128Mi
+      restartPolicy: Always
+
+          
+            
             
