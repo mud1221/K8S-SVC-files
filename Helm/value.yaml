@@ -1,0 +1,4 @@
+myimage: longflew/ingress: BLUEPAGE
+
+strategy:
+    type: RollingUpdate
